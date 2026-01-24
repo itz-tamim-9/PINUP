@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>PINUP PREMIUM | ULTIMATE</title>
+    <title>PINUP ULTIMATE | PHONK EDITION</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --bg-dark: #09090b;
-            --card-glass: rgba(30, 30, 35, 0.8);
+            --card-glass: rgba(30, 30, 35, 0.7);
             --gold: #FFD700;
             --ff-orange: #FF9900;
             --ff-yellow: #FFFF00;
@@ -32,19 +32,16 @@
 
         .hidden { display: none !important; }
         .glass {
-            background: var(--card-glass); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            background: var(--card-glass); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
         }
 
-        /* --- AUTH SCREEN --- */
+        /* --- UI COMPONENTS --- */
         #auth-screen { position: fixed; inset: 0; z-index: 9999; background: url('https://wallpapers.com/s/hd/free-fire-cool-background-1920-x-1080-3l3k6p5w5z5w5z5w.jpg') no-repeat center center/cover; }
         .auth-box { width: 90%; max-width: 350px; padding: 30px; border-radius: 20px; text-align: center; border: 1px solid var(--gold); background: rgba(0,0,0,0.85); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
         .inp-field { width: 100%; background: rgba(255,255,255,0.08); border: 1px solid #444; padding: 15px; border-radius: 12px; color: white; margin: 15px 0; transition: 0.3s; font-family: var(--font-body); }
-        .inp-field:focus { border-color: var(--gold); }
-        .btn-main { width: 100%; padding: 14px; background: linear-gradient(135deg, var(--gold), #ffa500); color: #000; border: none; border-radius: 10px; font-weight: 700; font-family: var(--font-head); cursor: pointer; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); transition: transform 0.1s; }
-        .btn-main:active { transform: scale(0.95); }
+        .btn-main { width: 100%; padding: 14px; background: linear-gradient(135deg, var(--gold), #ffa500); color: #000; border: none; border-radius: 10px; font-weight: 700; font-family: var(--font-head); cursor: pointer; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); }
         
-        /* --- MAIN LAYOUT --- */
         #main-app { height: 100%; display: flex; flex-direction: column; }
         .app-header { padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .u-img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover; }
@@ -52,52 +49,48 @@
         .content-area { flex: 1; overflow-y: auto; padding: 20px; padding-bottom: 100px; }
         .section-head { font-family: var(--font-head); font-size: 1.2rem; color: var(--gold); margin-bottom: 20px; border-left: 4px solid var(--neon); padding-left: 12px; }
 
-        /* --- TASKS --- */
-        .task-item { background: linear-gradient(90deg, #1a1a1a, #0d0d0d); border: 1px solid #333; padding: 15px; margin-bottom: 15px; border-radius: 12px; }
+        .task-item { background: linear-gradient(90deg, #1a1a1a, #0d0d0d); border: 1px solid #333; padding: 15px; margin-bottom: 15px; border-radius: 15px; position: relative; }
         .task-link-box { background: #000; color: var(--neon); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.8rem; border: 1px solid #333; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; margin-right: 10px; }
         .btn-copy { background: #333; color: white; border: none; padding: 8px 15px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 0.8rem; }
         .btn-claim { width: 100%; padding: 12px; border: none; margin-top: 15px; background: linear-gradient(to bottom, var(--ff-yellow), var(--ff-orange)); color: black; font-weight: 800; font-family: var(--font-head); border-radius: 8px; cursor: pointer; border-bottom: 3px solid #b36b00; }
-        .btn-claim:active { border-bottom: 1px solid #b36b00; transform: translateY(2px); }
-
-        /* --- STORE --- */
+        
+        /* Store Tabs */
         .topup-tabs { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 5px; }
         .tab-btn { background: #222; color: #aaa; padding: 8px 16px; border-radius: 20px; border: 1px solid #333; white-space: nowrap; font-size: 0.85rem; cursor: pointer; }
         .tab-btn.active { background: var(--gold); color: black; font-weight: bold; border-color: var(--gold); }
         .topup-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
         .topup-card { text-align: center; padding: 15px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); position: relative; overflow: hidden; transition: 0.3s; }
-        .topup-card:active { transform: scale(0.98); border-color: var(--gold); }
         .topup-price { background: var(--gold); color: black; display: inline-block; padding: 2px 10px; border-radius: 4px; font-weight: bold; font-size: 0.9rem; margin-top: 5px; }
 
-        /* --- CHAT & HISTORY --- */
-        #chat-window { height: 60vh; display: flex; flex-direction: column; background: #000; border-radius: 20px; border: 1px solid #222; overflow: hidden; background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png'); }
+        /* Chat */
+        #chat-window { height: 65vh; display: flex; flex-direction: column; background: #000; border-radius: 20px; border: 1px solid #222; overflow: hidden; background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png'); }
         #msg-container { flex: 1; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 10px; }
         .chat-bubble { max-width: 75%; padding: 10px 14px; font-size: 0.9rem; border-radius: 15px; word-wrap: break-word; }
         .mine { align-self: flex-end; background: linear-gradient(135deg, var(--gold), #e6b800); color: black; border-bottom-right-radius: 2px; }
         .theirs { align-self: flex-start; background: #222; border: 1px solid #333; color: white; border-bottom-left-radius: 2px; }
-        .history-item { display: flex; justify-content: space-between; padding: 12px; background: rgba(255,255,255,0.03); margin-bottom: 8px; border-radius: 8px; font-size: 0.85rem; border-left: 2px solid #333; }
+        .chat-img { max-width: 100%; border-radius: 10px; margin-top: 5px; }
 
-        /* --- BOTTOM NAV --- */
         .btm-nav { position: fixed; bottom: 20px; left: 20px; right: 20px; background: rgba(15, 15, 15, 0.95); backdrop-filter: blur(20px); border-radius: 25px; padding: 15px 30px; border: 1px solid rgba(255,215,0,0.2); display: flex; justify-content: space-between; z-index: 100; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .nav-icon { font-size: 1.4rem; color: #555; transition: 0.3s; }
-        .nav-icon.active { color: var(--gold); transform: translateY(-5px); text-shadow: 0 0 10px var(--gold); }
+        .nav-icon.active { color: var(--gold); transform: translateY(-5px); }
 
-        /* --- MODALS --- */
+        /* Modals */
         .modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.3s; }
         .modal-bg.active { opacity: 1; pointer-events: all; }
-        .modal-content { background: #121214; width: 90%; max-width: 350px; padding: 25px; border-radius: 20px; border: 1px solid var(--gold); text-align: center; transform: scale(0.8); transition: 0.3s; }
-        .modal-bg.active .modal-content { transform: scale(1); }
+        .modal-content { background: #121214; width: 90%; max-width: 350px; padding: 25px; border-radius: 20px; border: 1px solid var(--gold); text-align: center; }
 
-        /* --- ADMIN PANEL (Hidden) --- */
+        /* --- ADMIN PANEL (RESTORED FEATURES) --- */
         #admin-panel { background: #f4f6f9; color: #333; position: fixed; inset: 0; z-index: 5000; overflow-y: auto; display: none; font-family: sans-serif; }
-        .ad-header { background: #1e1e2d; color: #fff; padding: 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 10; }
+        .ad-header { background: #1e1e2d; color: #fff; padding: 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 6000; }
         .ad-container { padding: 15px; }
         .ad-card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 15px; }
-        .ad-nav { position: fixed; bottom: 0; width: 100%; background: white; display: flex; border-top: 1px solid #ddd; padding: 10px 0; }
+        .ad-nav { position: fixed; bottom: 0; width: 100%; background: white; display: flex; border-top: 1px solid #ddd; padding: 10px 0; z-index: 6000; }
         .ad-nav-item { flex: 1; text-align: center; color: #666; cursor: pointer; padding: 5px; }
-        .ad-nav-item.active { color: #007bff; font-weight: bold; }
+        .ad-nav-item.active { color: #007bff; font-weight: bold; background: #f0f8ff; }
         .ad-section { display: none; } .ad-section.active { display: block; }
+        .btn-adm { padding: 5px 10px; border: none; border-radius: 4px; cursor: pointer; color: white; margin-right: 5px; font-size: 0.8rem; }
+        .adm-input { width: 100%; padding: 8px; margin-bottom: 5px; border: 1px solid #ddd; border-radius: 4px; }
         
-        /* Switch UI */
         .switch { position: relative; display: inline-block; width: 46px; height: 24px; }
         .slider { position: absolute; cursor: pointer; inset: 0; background-color: #333; border-radius: 34px; border: 1px solid #555; transition: .4s; }
         .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 2px; background-color: white; border-radius: 50%; transition: .4s; }
@@ -107,9 +100,15 @@
 </head>
 <body onclick="initAudio()">
 
-    <audio id="bgMusic" src="https://files.catbox.moe/p9r1m0.mp3" loop preload="auto"></audio> <audio id="snd-tap" src="https://www.soundjay.com/buttons/sounds/button-16.mp3" preload="auto"></audio> <audio id="snd-success" src="https://files.catbox.moe/nbt2p7.mp3" preload="auto"></audio> <audio id="snd-error" src="https://www.soundjay.com/buttons/sounds/button-10.mp3" preload="auto"></audio> <audio id="snd-close" src="https://www.soundjay.com/buttons/sounds/button-50.mp3" preload="auto"></audio> <audio id="snd-key" src="https://www.soundjay.com/buttons/sounds/button-37.mp3" preload="auto"></audio> <div id="auth-screen">
+    <audio id="bgMusic" src="https://files.catbox.moe/p9r1m0.mp3" loop preload="auto"></audio> <audio id="snd-tap" src="https://www.soundjay.com/buttons/sounds/button-16.mp3" preload="auto"></audio>
+    <audio id="snd-success" src="https://files.catbox.moe/nbt2p7.mp3" preload="auto"></audio>
+    <audio id="snd-error" src="https://www.soundjay.com/buttons/sounds/button-10.mp3" preload="auto"></audio>
+    <audio id="snd-close" src="https://www.soundjay.com/buttons/sounds/button-50.mp3" preload="auto"></audio>
+    <audio id="snd-key" src="https://www.soundjay.com/buttons/sounds/button-37.mp3" preload="auto"></audio>
+
+    <div id="auth-screen">
         <div class="auth-box glass">
-            <h1 style="font-family: 'Orbitron'; color: var(--gold); font-size: 2.5rem;">PINUP</h1>
+            <h1 style="font-family: 'Orbitron'; color: var(--gold); font-size: 2.2rem;">PINUP</h1>
             <p style="color: #ccc; margin-bottom: 20px;">Elite Rewards Engine</p>
             <input type="email" id="login-email" class="inp-field" placeholder="Enter Valid Gmail..." oninput="playSnd('key')">
             <button class="btn-main" onclick="playSnd('tap'); app.login()">START ENGINE</button>
@@ -158,7 +157,9 @@
                 <div id="chat-window">
                     <div id="msg-container"></div>
                     <div style="padding: 10px; background: #111; display: flex; gap: 10px; align-items: center; border-top: 1px solid #333;">
-                        <input id="chat-inp" class="inp-field" style="margin:0; border-radius: 50px; padding: 10px 20px;" placeholder="Type message..." oninput="playSnd('key')">
+                        <input type="file" id="chat-file" accept="image/*" class="hidden" onchange="app.handleChatImg(this)">
+                        <label for="chat-file" style="color:var(--gold); cursor:pointer;"><i class="fas fa-paperclip"></i></label>
+                        <input id="chat-inp" class="inp-field" style="margin:0; border-radius: 50px; padding: 10px 20px;" placeholder="Message..." oninput="playSnd('key')">
                         <button onclick="playSnd('tap'); app.sendMsg()" style="background: var(--gold); width: 40px; height: 40px; border-radius: 50%; border: none;"><i class="fas fa-paper-plane"></i></button>
                     </div>
                 </div>
@@ -168,11 +169,15 @@
                 <div class="glass" style="padding: 30px; border-radius: 20px; position: relative;">
                     <div class="profile-head">
                         <img src="" id="p-img" class="u-img" style="width: 100px; height: 100px; border: 4px solid var(--gold);">
-                        <div onclick="playSnd('tap'); tryAdminAccess()" style="position: absolute; bottom: 0; right: 35%; background: var(--gold); color: black; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; cursor: pointer;">
-                            <i class="fas fa-shield-alt"></i>
+                        <label for="p-up" style="position: absolute; bottom: 0; right: 35%; background: var(--gold); color: black; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; cursor: pointer;"><i class="fas fa-camera"></i></label>
+                        <input type="file" id="p-up" class="hidden" accept="image/*" onchange="app.uploadProfile(this)">
+                        
+                        <div onclick="playSnd('tap'); tryAdminAccess()" style="position: absolute; top: 0; right: 0; opacity: 0.1; cursor: pointer; padding: 10px;">
+                            <i class="fas fa-shield-alt" style="font-size: 1.2rem;"></i>
                         </div>
-                        <h2 id="p-name" style="margin-top: 15px; color: white;">Name</h2>
-                        <p id="p-email" style="color: #777; font-size: 0.8rem;">email@gmail.com</p>
+                        
+                        <h2 id="p-name" style="margin-top: 15px;">Name</h2>
+                        <p id="p-email" style="color: #777;">email@gmail.com</p>
                     </div>
 
                     <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; margin-top: 20px; border: 1px solid #444;">
@@ -213,6 +218,8 @@
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px">
                 <button class="tab-btn" onclick="playSnd('tap'); app.selWd(100,this)">100 💎</button>
                 <button class="tab-btn" onclick="playSnd('tap'); app.selWd(300,this)">300 💎</button>
+                <button class="tab-btn" onclick="playSnd('tap'); app.selWd(500,this)">500 💎</button>
+                <button class="tab-btn" onclick="playSnd('tap'); app.selWd(1000,this)">1K 💎</button>
             </div>
             <button class="btn-main" onclick="playSnd('tap'); app.submitWd()">CONFIRM</button>
             <button onclick="playSnd('close'); document.getElementById('modal-wd').classList.remove('active')" style="background:none;color:#777;border:none;margin-top:15px">Cancel</button>
@@ -230,10 +237,10 @@
     </div>
 
     <div id="admin-panel">
-        <div class="ad-header"><h3>ADMIN PANEL</h3><button class="btn-main" style="width:auto; padding:5px 15px; background:red; color:white;" onclick="playSnd('close'); closeAdmin()">EXIT</button></div>
+        <div class="ad-header"><h3>ADMIN PANEL</h3><button class="btn-adm" style="background:#dc3545" onclick="playSnd('close'); closeAdmin()">EXIT</button></div>
         
         <div id="ad-dash" class="ad-container ad-section active">
-            <div class="ad-card"><h4>Total Users: <span id="st-users" style="color:blue">0</span></h4><button style="color:red; border:none; background:none; cursor:pointer; margin-top:5px;" onclick="if(confirm('Reset DB?')){localStorage.removeItem('pinup_ult_v5');location.reload();}">Reset All Data</button></div>
+            <div class="ad-card"><h4>Overview</h4><p>Users: <span id="st-users" style="color:blue">0</span></p><button class="btn-adm" style="background:#dc3545;margin-top:10px;" onclick="if(confirm('Reset All Data?')){localStorage.removeItem('pinup_ult_v6');location.reload();}">RESET DATABASE</button></div>
             <div class="ad-card"><h4>Requests</h4><div id="req-list"></div></div>
         </div>
 
@@ -242,19 +249,44 @@
         </div>
 
         <div id="ad-tasks" class="ad-container ad-section">
-            <div class="ad-card"><h4>Add Task</h4><input id="t-tit" placeholder="Title"><input id="t-lnk" placeholder="Link"><input id="t-cod" placeholder="Code"><input id="t-rew" type="number" placeholder="Reward"><button class="btn-main" onclick="adm.addTask()">ADD</button></div>
+            <div class="ad-card"><h4>Add Task</h4><input class="adm-input" id="t-tit" placeholder="Title"><input class="adm-input" id="t-lnk" placeholder="Link"><input class="adm-input" id="t-cod" placeholder="Code"><input class="adm-input" id="t-rew" type="number" placeholder="Reward"><button class="btn-adm" style="background:#007bff;width:100%" onclick="adm.addTask()">PUBLISH</button></div>
             <div id="active-tasks"></div>
         </div>
 
         <div class="ad-nav">
-            <div class="ad-nav-item active" onclick="playSnd('tap'); adNav('ad-dash',this)">Home</div>
+            <div class="ad-nav-item active" onclick="playSnd('tap'); adNav('ad-dash',this)">Dashboard</div>
             <div class="ad-nav-item" onclick="playSnd('tap'); adNav('ad-users',this)">Users</div>
             <div class="ad-nav-item" onclick="playSnd('tap'); adNav('ad-tasks',this)">Tasks</div>
         </div>
     </div>
 
+    <div id="edit-modal" class="modal-bg" style="z-index:6000;">
+        <div class="modal-content" style="background:white;color:black;">
+            <h4>Edit User</h4>
+            <input class="adm-input" id="e-name" placeholder="Name">
+            <input class="adm-input" id="e-bal" type="number" placeholder="Diamonds">
+            <input class="adm-input" id="e-img" placeholder="Img URL">
+            <div style="display:flex;gap:10px;margin-top:10px">
+                <button class="btn-adm" style="background:#28a745;flex:1" onclick="adm.saveUser()">SAVE</button>
+                <button id="btn-ban" class="btn-adm" style="background:#dc3545;flex:1" onclick="adm.toggleBan()">BAN</button>
+            </div>
+            <button class="btn-adm" style="background:#333;width:100%;margin-top:10px" onclick="document.getElementById('edit-modal').classList.remove('active')">CLOSE</button>
+        </div>
+    </div>
+
+    <div id="chat-modal-adm" class="modal-bg" style="z-index:6000;">
+        <div class="modal-content" style="background:white;color:black;height:70vh;display:flex;flex-direction:column;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:10px;"><b>Chat: <span id="c-user"></span></b><button onclick="document.getElementById('chat-modal-adm').classList.remove('active')">X</button></div>
+            <div id="c-msgs-adm" style="flex:1;overflow-y:auto;background:#f4f6f9;padding:10px;border:1px solid #ddd;margin-bottom:10px;"></div>
+            <div style="display:flex;gap:5px;">
+                <input id="c-inp-adm" class="adm-input" style="margin:0;" placeholder="Reply...">
+                <button class="btn-adm" style="background:#007bff;" onclick="adm.sendMsg()">Send</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        const DB = 'pinup_ult_v5';
+        const DB = 'pinup_ult_v6';
         let audioActive = false;
 
         // --- SOUND ENGINE ---
@@ -281,7 +313,7 @@
             isOn ? bgm.play() : bgm.pause();
         }
 
-        // --- ADMIN SECRET LOGIC ---
+        // --- SECRET ADMIN ---
         let admClicks = 0, admTimer;
         function tryAdminAccess() {
             clearTimeout(admTimer); admClicks++; admTimer = setTimeout(()=>admClicks=0, 2000);
@@ -297,10 +329,10 @@
 
         // --- MAIN APP LOGIC ---
         const app = {
-            user: null, tempTask: null, wdVal: 0, payItem: null, payCost: null,
+            user: null, tempTask: null, wdVal: 0, payItem: null, payCost: null, chatImg: null,
             init: () => {
                 if(!localStorage.getItem(DB)) localStorage.setItem(DB, JSON.stringify({ users: [], tasks: [], withdrawals: [], msgs: [] }));
-                const sess = localStorage.getItem('pinup_sess_v5');
+                const sess = localStorage.getItem('pinup_sess_v6');
                 if(sess) {
                     app.user = JSON.parse(localStorage.getItem(DB)).users.find(u => u.email === sess);
                     if(app.user && !app.user.blocked) app.load();
@@ -316,7 +348,7 @@
                     db.users.push(u); localStorage.setItem(DB, JSON.stringify(db));
                 }
                 if(u.blocked) { playSnd('error'); return alert("BANNED!"); }
-                app.user = u; localStorage.setItem('pinup_sess_v5', e);
+                app.user = u; localStorage.setItem('pinup_sess_v6', e);
                 playSnd('success'); app.load();
             },
             load: () => {
@@ -365,14 +397,18 @@
                 localStorage.setItem(DB, JSON.stringify(db));
                 playSnd('success'); document.getElementById('modal-claim').classList.remove('active'); app.refresh(); app.renderTasks(); alert("Success!");
             },
-            // STORE
+            // STORE (RESTORED)
             renderTopUp: (cat, btn) => {
                 document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active');
                 const grid = document.getElementById('topup-grid'); grid.innerHTML = '';
                 let data = [];
-                if(cat==='regular') data=[{n:'25💎',p:'25'},{n:'50💎',p:'40'},{n:'115💎',p:'80'},{n:'355💎',p:'240'},{n:'610💎',p:'405'}];
-                else if(cat==='special') data=[{n:'Level Up',p:'160'},{n:'Evo Pass',p:'340'}];
-                else data=[{n:'Weekly',p:'160'},{n:'Monthly',p:'795'}];
+                if(cat === 'regular') {
+                    data = [{n:'25💎',p:'25'},{n:'50💎',p:'40'},{n:'115💎',p:'80'},{n:'240💎',p:'160'},{n:'355💎',p:'240'},{n:'480💎',p:'320'},{n:'610💎',p:'405'},{n:'1240💎',p:'810'}];
+                } else if(cat === 'special') {
+                    data = [{n:'Level Up Pass',p:'160'}, {n:'Evo 3 Days',p:'75'},{n:'Evo 7 Days',p:'110'},{n:'Evo 30 Days',p:'340'}];
+                } else {
+                    data = [{n:'Weekly Lite',p:'45'},{n:'Weekly Mem',p:'160'},{n:'Monthly Mem',p:'795'},{n:'4X Weekly Lite',p:'180'}];
+                }
                 data.forEach(d => {
                     grid.innerHTML += `<div class="topup-card glass" onclick="playSnd('tap'); app.initPay('${d.n}','${d.p}')"><i class="fas fa-gem" style="font-size:1.5rem;color:var(--neon)"></i><div style="margin:5px 0;">${d.n}</div><div class="topup-price">৳ ${d.p}</div></div>`;
                 });
@@ -400,19 +436,23 @@
                 playSnd('success'); document.getElementById('modal-wd').classList.remove('active'); app.refresh(); alert("Request Sent!");
             },
             // CHAT
+            handleChatImg: (inp) => { if(inp.files[0]){ const r = new FileReader(); r.onload = (e) => { app.chatImg = e.target.result; }; r.readAsDataURL(inp.files[0]); }},
+            sendMsg: () => {
+                const txt = document.getElementById('chat-inp').value; if(!txt && !app.chatImg) return;
+                const db = JSON.parse(localStorage.getItem(DB));
+                db.msgs.push({ user:app.user.email, txt:txt, img:app.chatImg, from:'user', time:new Date().toLocaleTimeString() });
+                localStorage.setItem(DB, JSON.stringify(db));
+                document.getElementById('chat-inp').value=''; app.chatImg=null; app.renderChat();
+            },
             renderChat: () => {
                 const db = JSON.parse(localStorage.getItem(DB)); const box = document.getElementById('msg-container'); box.innerHTML = '';
                 db.msgs.filter(m => m.user === app.user.email).forEach(m => {
-                    box.innerHTML += `<div class="chat-bubble ${m.from==='user'?'mine':'theirs'}">${m.txt}</div>`;
+                    const img = m.img ? `<br><img src="${m.img}" class="chat-img">` : '';
+                    box.innerHTML += `<div class="chat-bubble ${m.from==='user'?'mine':'theirs'}">${m.txt} ${img}</div>`;
                 });
+                box.scrollTop = box.scrollHeight;
             },
-            sendMsg: () => {
-                const txt = document.getElementById('chat-inp').value; if(!txt) return;
-                const db = JSON.parse(localStorage.getItem(DB));
-                db.msgs.push({ user:app.user.email, txt:txt, from:'user' });
-                localStorage.setItem(DB, JSON.stringify(db));
-                document.getElementById('chat-inp').value=''; app.renderChat();
-            },
+            uploadProfile: (inp) => { if(inp.files[0]){const r=new FileReader();r.onload=e=>{const db=JSON.parse(localStorage.getItem(DB));db.users.find(u=>u.email===app.user.email).photo=e.target.result;localStorage.setItem(DB,JSON.stringify(db));app.refresh();};r.readAsDataURL(inp.files[0]);}},
             renderRank: () => {
                 const db = JSON.parse(localStorage.getItem(DB));
                 const list = document.getElementById('lb-list'); list.innerHTML = '';
@@ -423,6 +463,7 @@
         };
 
         // --- ADMIN LOGIC ---
+        let chatUser = null, editUserIdx = null;
         const adm = {
             init: () => { adm.renderDash(); },
             renderDash: () => {
@@ -430,17 +471,51 @@
                 const l = document.getElementById('req-list'); l.innerHTML = '';
                 db.withdrawals.forEach((w, i) => {
                     if(w.status === 'Pending') {
-                        l.innerHTML += `<div style="border-bottom:1px solid #eee; padding:5px;"><div style="font-weight:bold;">${w.type} | ${w.user}</div><div>${w.item} (Trx:${w.trx})</div><button onclick="playSnd('success'); adm.act(${i},'Success')">✔</button> <button onclick="playSnd('error'); adm.act(${i},'Reject')">✖</button></div>`;
+                        l.innerHTML += `<div style="border-bottom:1px solid #eee; padding:5px;"><div style="font-weight:bold;">${w.type} | ${w.user}</div><div>${w.item} (Trx:${w.trx})</div><button class="btn-adm" style="background:#28a745" onclick="playSnd('success'); adm.act(${i},'Success')">✔</button> <button class="btn-adm" style="background:#dc3545" onclick="playSnd('error'); adm.act(${i},'Reject')">✖</button></div>`;
                     }
                 });
             },
             act: (i, st) => { const db = JSON.parse(localStorage.getItem(DB)); db.withdrawals[i].status = st; localStorage.setItem(DB, JSON.stringify(db)); adm.renderDash(); },
             renderUsers: () => {
                 const db = JSON.parse(localStorage.getItem(DB)); const l = document.getElementById('user-list'); l.innerHTML = '';
-                db.users.forEach(u => {
-                    l.innerHTML += `<div style="padding:10px; border-bottom:1px solid #eee;"><b>${u.name}</b> (${u.diamonds}💎)</div>`;
+                db.users.forEach((u, i) => {
+                    l.innerHTML += `<div style="padding:10px; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;"><div><b>${u.name}</b><br><small>${u.diamonds}💎</small></div><div><button class="btn-adm" style="background:#007bff" onclick="adm.openChat('${u.email}')">Chat</button><button class="btn-adm" style="background:#343a40" onclick="adm.openEdit(${i})">Edit</button></div></div>`;
                 });
             },
+            openEdit: (i) => {
+                editUserIdx = i; const u = JSON.parse(localStorage.getItem(DB)).users[i];
+                document.getElementById('e-name').value = u.name; document.getElementById('e-bal').value = u.diamonds; document.getElementById('e-img').value = u.photo;
+                document.getElementById('btn-ban').innerText = u.blocked ? "UNBAN" : "BAN";
+                document.getElementById('edit-modal').classList.add('active');
+            },
+            saveUser: () => {
+                const db = JSON.parse(localStorage.getItem(DB));
+                db.users[editUserIdx].name = document.getElementById('e-name').value;
+                db.users[editUserIdx].diamonds = parseInt(document.getElementById('e-bal').value);
+                db.users[editUserIdx].photo = document.getElementById('e-img').value;
+                localStorage.setItem(DB, JSON.stringify(db)); document.getElementById('edit-modal').classList.remove('active'); adm.renderUsers();
+            },
+            toggleBan: () => { const db = JSON.parse(localStorage.getItem(DB)); db.users[editUserIdx].blocked = !db.users[editUserIdx].blocked; localStorage.setItem(DB, JSON.stringify(db)); document.getElementById('edit-modal').classList.remove('active'); adm.renderUsers(); },
+            
+            // ADMIN CHAT
+            openChat: (e) => { chatUser = e; document.getElementById('chat-modal-adm').classList.add('active'); document.getElementById('c-user').innerText = e; adm.renderChat(); },
+            renderChat: () => {
+                const db = JSON.parse(localStorage.getItem(DB)); const box = document.getElementById('c-msgs-adm'); box.innerHTML = '';
+                db.msgs.filter(m => m.user === chatUser).forEach(m => {
+                    const bg = m.from==='admin' ? '#007bff' : '#e9ecef';
+                    const col = m.from==='admin' ? 'white' : 'black';
+                    const align = m.from==='admin' ? 'flex-end' : 'flex-start';
+                    box.innerHTML += `<div style="display:flex; justify-content:${align}; margin-bottom:5px;"><div style="background:${bg}; color:${col}; padding:5px 10px; border-radius:10px; max-width:80%;">${m.txt}</div></div>`;
+                });
+                box.scrollTop = box.scrollHeight;
+            },
+            sendMsg: () => {
+                const txt = document.getElementById('c-inp-adm').value; if(!txt) return;
+                const db = JSON.parse(localStorage.getItem(DB));
+                db.msgs.push({ user:chatUser, txt:txt, from:'admin', time:new Date().toLocaleTimeString() });
+                localStorage.setItem(DB, JSON.stringify(db)); document.getElementById('c-inp-adm').value=''; adm.renderChat();
+            },
+            
             renderTasks: () => {
                 const db = JSON.parse(localStorage.getItem(DB)); const l = document.getElementById('active-tasks'); l.innerHTML = '';
                 db.tasks.forEach((t, i) => {
